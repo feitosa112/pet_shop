@@ -13,4 +13,8 @@ class Category_model extends Model
         'category_name',
     ];
     use HasFactory;
+
+    public function products(){
+        return $this->hasMany(ProductModel::class,'category_id','id');
+    }
 }
