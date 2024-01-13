@@ -25,8 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = ProductModel::with('categories')->get();
-        $categories = Category_model::all();
-        return view('home',compact('products','categories'));
+
+
+        return view('home');
     }
 }

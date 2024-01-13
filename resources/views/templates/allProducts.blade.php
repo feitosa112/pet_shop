@@ -14,10 +14,12 @@
                                 <span class="text-dark" style="width: 130px;">All Products</span>
                             </a>
                         </li>
+
                         @foreach ($categories as $category)
+
                         <li class="nav-item">
                             <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
-                                <span class="text-dark" style="width: 130px;">{{$category->name}}</span>
+                                <span class="text-dark" style="width: 130px;">{{$category}}</span>
                             </a>
                         </li>
                         @endforeach
@@ -30,7 +32,8 @@
                     <div class="row g-4">
                         <div class="col-lg-12">
                             <div class="row g-4">
-                                @foreach ($products as $product)
+
+                                @foreach ($allProducts as $product)
                                 {{-- @dd($product->categories) --}}
                                 <div class="col-md-6 col-lg-4 col-xl-3">
                                     <div class="rounded position-relative fruite-item" style="border: 1px solid orange">
@@ -50,7 +53,7 @@
                                             <p>{{$product->description}}</p>
                                             <div class="d-flex justify-content-between flex-lg-wrap">
                                                 <p class="text-dark fs-5 fw-bold mb-0">{{$product->price}}</p>
-                                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                <a href="{{route('addToCart')}}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                             </div>
                                         </div>
 
