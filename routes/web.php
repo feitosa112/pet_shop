@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductControler;
+use App\Models\ProductModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +25,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::view('/cart','cart')->name('cart');
 
-Route::get('/add-to-cart',[CartController::class,'addToCart'])->middleware('auth.check')->name('addToCart');
+
+
+
+Route::controller(ProductControler::class)->group(function(){
+    Route::get('/product-details/{name}/{id}','productDetails')->name('productDetails');
+    Route::get('/add-to-cart/{id}','addToCart')->name('addToCart');
+    Route::get('/cart-view','cartView')->name('cartView');
+
+});
