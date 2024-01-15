@@ -1,9 +1,12 @@
-@include('layouts.app')
+@extends('layouts.app')
+
+@section('content')
+
 
 <!-- Cart Page Start -->
 <div class="container-fluid py-5">
     <div class="container py-5">
-        <div class="table-responsive">
+        <div class="table-responsive mt-5">
             <table class="table">
                 <thead>
                   <tr>
@@ -17,8 +20,6 @@
                 </thead>
                 <tbody>
                     @foreach ($cart as $item)
-                    <!-- ... (ostatak HTML koda) ... -->
-
 <tr>
     <th scope="row">
         <div class="d-flex align-items-center">
@@ -60,6 +61,7 @@
                 </tbody>
             </table>
         </div>
+
         @if (Auth::user())
         <div class="container">
             <div class="row" style="border:1px dotted black">
@@ -73,44 +75,27 @@
                 </div>
             </div>
         </div>
+
         @endif
+
+
 
         {{-- <div class="mt-5">
             <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
             <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
         </div> --}}
-        <div class="row g-4 justify-content-end">
-            <div class="col-8"></div>
-            <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
-                <div class="bg-light rounded">
-                    <div class="p-4">
-                        <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
-                        <div class="d-flex justify-content-between mb-4">
-                            <h5 class="mb-0 me-4">Subtotal:</h5>
-                            <p class="mb-0" id="subtotal"></p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h5 class="mb-0 me-4">Shipping</h5>
-                            <div class="">
-                                <p class="mb-0">Flat rate: 7.00 KM</p>
-                            </div>
-                        </div>
+        @if (count($cart)!=0)
+        <!-- Checkout Page Start -->
 
-                    </div>
-                    <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                        <h5 class="mb-0 ps-4 me-4">Total</h5>
-                        <p class="mb-0 pe-4" id="total"></p>
-                    </div>
-                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Cart Page End -->
+        @include('templates.details')
+
+        @endif
+
+        <!-- Cart Page End -->
+
 
 <script>
-    // Dodajte JavaScript kod
+    //JavaScript kod
 var minusButtons = document.querySelectorAll('.minusBtn');
 var plusButtons = document.querySelectorAll('.plusBtn');
 var quantityInputs = document.querySelectorAll('.quantityInput');
@@ -201,3 +186,6 @@ updateSubtotal();
 
 
 </script>
+
+@endsection
+

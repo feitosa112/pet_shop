@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductControler;
 use App\Models\ProductModel;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,11 @@ Route::controller(ProductControler::class)->group(function(){
     Route::get('/add-to-cart/{id}','addToCart')->middleware('auth.check')->name('addToCart');
     Route::get('/cart-view','cartView')->middleware('auth.check')->name('cartView');
     Route::get('/delete/{id}','deleteFromCart')->name('deleteFromCart');
+});
 
+Route::controller(OrderController::class)->group(function(){
+    Route::post('/order','orderExecute')->name('orderExecute');
 
 });
+
+
