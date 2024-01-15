@@ -51,19 +51,29 @@
     </td>
     <td>
         <button class="btn btn-md rounded-circle bg-light border mt-4" >
-            <i class="fa fa-times text-danger"></i>
+            <a href="{{route('deleteFromCart',['id'=>$item->id])}}"><i class="fa fa-times text-danger"></i></a>
+
         </button>
     </td>
 </tr>
-
-<!-- ... (ostatak HTML koda) ... -->
-
-
                     @endforeach
                 </tbody>
             </table>
         </div>
+        @if (Auth::user())
+        <div class="container">
+            <div class="row" style="border:1px dotted black">
+                <div class="col-6 offset-3">
+                    @if (count($cart) === 0)
+                        <h4 class="display-4 text-center">Vasa korpa je prazna</h4>
+                    @endif
 
+
+
+                </div>
+            </div>
+        </div>
+        @endif
 
         {{-- <div class="mt-5">
             <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">

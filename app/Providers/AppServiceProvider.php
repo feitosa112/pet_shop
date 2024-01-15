@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\AllProductsServices;
+use App\Services\CartService;
 use App\Services\Categories;
 use Illuminate\Database\Schema\Builder;
 use Illuminate\Support\Facades\View;
@@ -36,6 +37,8 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) use ($categories) {
             $view->with('categories', $categories);
         });
+
+
 
 
 

@@ -1,4 +1,5 @@
 <!-- Navbar start -->
+
 <div class="container-fluid fixed-top">
     <div class="container topbar bg-primary d-none d-lg-block">
         <div class="d-flex justify-content-between">
@@ -30,7 +31,9 @@
                     <a href="{{route('cartView')}}" class="nav-item nav-link">Cart</a>
                     <a href="{{route('cartView')}}" class="position-relative me-4 my-auto">
                         <i class="fa fa-shopping-bag fa-2x"></i>
-                        <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+                        <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
+                            {{ count(Session::get('cart', [])) }}
+                        </span>
                     </a>
                     <ul class="navbar-nav float-end">
                         <!-- Authentication Links -->

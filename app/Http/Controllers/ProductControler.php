@@ -42,4 +42,17 @@ class ProductControler extends Controller
         }
         return view('cart',compact('cart','total'));
     }
+
+    public function deleteFromCart($id){
+        $cart = Session::get('cart',[]);
+        if(array_key_exists($id,$cart)){
+            unset($cart[$id]);
+
+            Session::put('cart',$cart);
+
+            return redirect()->back()->with('deleteFromCart','Uspjesno ste obrisali proizvod iz korpe');
+        }else{
+            return redirect()->back()->with('errorDeleteFromCart','Greska,pokusajte ponovo');
+        }
+    }
 }
