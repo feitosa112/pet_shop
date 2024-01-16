@@ -27,9 +27,12 @@ class AppServiceProvider extends ServiceProvider
         $allProducts = new AllProductsServices();
         $allProducts = $allProducts->allProducts();
 
+
+
         View::composer('*', function ($view) use ($allProducts) {
             $view->with('allProducts', $allProducts);
         });
+
 
         $categories = new Categories();
         $categories = $categories->getCategories();

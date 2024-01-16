@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $allProducts = ProductModel::paginate(4);
+    $paginator = $allProducts->links()->paginator;
+    return view('welcome',['allProducts'=>$allProducts,'paginator'=>$paginator]);
 });
 
 Auth::routes();

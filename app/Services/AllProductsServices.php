@@ -3,14 +3,10 @@
 namespace App\Services;
 
 use App\Models\ProductModel;
-use Illuminate\Support\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class AllProductsServices {
-    public function allProducts(){
-        $allProducts = ProductModel::with('categories')->get();
-
-        return $allProducts;
+    public function allProducts(): LengthAwarePaginator {
+        return ProductModel::paginate(4);
     }
-
-
 }

@@ -35,7 +35,7 @@
                             <div class="row g-4">
 
                                 @foreach ($allProducts as $product)
-                                {{-- @dd($product->categories) --}}
+
                                 <div class="col-md-6 col-lg-4 col-xl-3">
                                     <?php $productName = str_replace(' ','-',$product->name) ?>
 
@@ -73,6 +73,20 @@
                     </div>
                 </div>
             </div>
+            <div class="pagination justify-content-center mt-5">
+                @if ($paginator->currentPage() > 1)
+                    <a href="{{ $paginator->previousPageUrl() }}" class="btn btn-outline-primary me-2">&laquo; Previous</a>
+                @endif
+
+                @for ($i = 1; $i <= $paginator->lastPage(); $i++)
+                    <a href="{{ $paginator->url($i) }}" class="btn btn-outline-primary me-2 {{ $paginator->currentPage() == $i ? 'active' : '' }}">{{ $i }}</a>
+                @endfor
+
+                @if ($paginator->hasMorePages())
+                    <a href="{{ $paginator->nextPageUrl() }}" class="btn btn-outline-primary ms-2">Next &raquo;</a>
+                @endif
+            </div>
+
         </div>
     </div>
 </div>

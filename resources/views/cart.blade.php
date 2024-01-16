@@ -31,44 +31,47 @@
                 </thead>
                 <tbody>
                     @foreach ($cart as $item)
-<tr>
-    <th scope="row">
-        <div class="d-flex align-items-center">
-            <img src="/img/{{$item->img1}}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
-        </div>
-    </th>
-    <td>
-        <p class="mb-0 mt-4">{{$item->name}}</p>
-    </td>
-    <td>
-        <p class="mb-0 mt-4 price-column" data-price="{{$item->price}}">{{$item->price}} KM</p>
-    </td>
-    <td>
-        <div class="input-group quantity mt-4" style="width: 100px;">
-            <div class="input-group-btn">
-                <button class="btn btn-sm btn-minus rounded-circle bg-light border minusBtn">
-                    <i class="fa fa-minus"></i>
-                </button>
-            </div>
-            <input class="quantityInput form-control form-control-sm text-center border-0" name="quantity[{{$item->id}}]" type="text" value="1">
-            <div class="input-group-btn">
-                <button class="btn btn-sm btn-plus rounded-circle bg-light border plusBtn">
-                    <i class="fa fa-plus"></i>
-                </button>
-            </div>
-        </div>
-    </td>
-    <td>
-        <p class="mb-0 mt-4 total-column">{{$item->price}} KM</p>
-    </td>
-    <td>
-        <button class="btn btn-md rounded-circle bg-light border mt-4" >
-            <a href="{{route('deleteFromCart',['id'=>$item->id])}}"><i class="fa fa-times text-danger"></i></a>
+                    <?php $productName = str_replace(' ','-',$item->name) ?>
 
-        </button>
-    </td>
-</tr>
-                    @endforeach
+                        <tr style="cursor:pointer;" onclick="window.location='{{route('productDetails',['name'=>$productName,'id'=>$item->id])}}';">
+                            <th scope="row">
+                                <div class="d-flex align-items-center">
+                                    <img src="/img/{{ $item->img1 }}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                                </div>
+                            </th>
+                            <td>
+                                <p class="mb-0 mt-4">{{ $item->name }}</p>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4 price-column" data-price="{{ $item->price }}">{{ $item->price }} KM</p>
+                            </td>
+                            <td>
+                                <div class="input-group quantity mt-4" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-minus rounded-circle bg-light border minusBtn">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input class="quantityInput form-control form-control-sm text-center border-0" name="quantity[{{ $item->id }}]" type="text" value="1">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border plusBtn">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="mb-0 mt-4 total-column">{{ $item->price }} KM</p>
+                            </td>
+                            <td>
+                                <button class="btn btn-md rounded-circle bg-light border mt-4">
+                                    <a href="{{ route('deleteFromCart',['id' => $item->id]) }}" class="text-decoration-none text-danger"><i class="fa fa-times"></i></a>
+                                </button>
+                            </td>
+                        </tr>
+
+                @endforeach
+
                 </tbody>
             </table>
         </div>

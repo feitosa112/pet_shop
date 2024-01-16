@@ -25,8 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $allProducts = ProductModel::paginate(4);
+        $paginator = $allProducts->links()->paginator;
+        return view('home', ['allProducts' => $allProducts,'paginator'=>$paginator]);
 
 
-        return view('home');
     }
 }
