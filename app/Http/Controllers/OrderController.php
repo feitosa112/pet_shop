@@ -7,6 +7,7 @@ use App\Models\OrderItemsModel;
 use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use PDO;
 
 class OrderController extends Controller
 {
@@ -18,16 +19,22 @@ class OrderController extends Controller
     }
 
     public function orderExecute(OrderExecuteRequest $request){
+        $quantity = $request->quantity;
+        foreach($quantity as $quant=>$num){
 
+        }
         $cart = Session::get('cart',[]);
 
         if($cart != null){
             $order = $this->orderRepo->getOrderExecute($cart,$request);
 
             foreach($cart as $product){
+
                 OrderItemsModel::create([
                     'product_id' => $product->id,
                     'order_id' => $order->id,
+                    'quantity'=>$num
+
                 ]);
             }
         }

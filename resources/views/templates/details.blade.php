@@ -1,15 +1,7 @@
 <div class="container-fluid py-5">
     <div class="container py-5">
         <h1 class="mb-4">Billing details</h1>
-        @if ($errors->any())
-            @foreach($errors->all() as $error)
 
-            <p style="color: red">{{$error}}</p>
-
-            @endforeach
-            @endif
-        <form action="{{route('orderExecute')}}" method="POST">
-            @csrf
             <div class="row g-5">
                 <div class="col-md-12 col-lg-6 col-xl-7">
 
@@ -45,6 +37,6 @@
 
                 </div>
             </div>
-        </form>
+
     </div>
 </div>

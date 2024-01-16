@@ -4,6 +4,17 @@
 
 
 <!-- Cart Page Start -->
+@if ($errors->any())
+            @foreach($errors->all() as $error)
+
+            <p style="color: red">{{$error}}</p>
+
+            @endforeach
+            @endif
+
+
+<form action="{{route('orderExecute')}}" method="POST">
+    @csrf
 <div class="container-fluid py-5">
     <div class="container py-5">
         <div class="table-responsive mt-5">
@@ -39,7 +50,7 @@
                     <i class="fa fa-minus"></i>
                 </button>
             </div>
-            <input class="quantityInput form-control form-control-sm text-center border-0" type="text" value="1">
+            <input class="quantityInput form-control form-control-sm text-center border-0" name="quantity[{{$item->id}}]" type="text" value="1">
             <div class="input-group-btn">
                 <button class="btn btn-sm btn-plus rounded-circle bg-light border plusBtn">
                     <i class="fa fa-plus"></i>
@@ -61,6 +72,8 @@
                 </tbody>
             </table>
         </div>
+    </div>
+</div>
 
         @if (Auth::user())
         <div class="container">
@@ -92,7 +105,7 @@
         @endif
 
         <!-- Cart Page End -->
-
+    </form>
 
 <script>
     //JavaScript kod
@@ -103,12 +116,14 @@ var totalColumns = document.querySelectorAll('.total-column');
 
 for (var i = 0; i < minusButtons.length; i++) {
     minusButtons[i].addEventListener('click', function() {
+    event.preventDefault();
         decrementQuantity(this);
     });
 }
 
 for (var i = 0; i < plusButtons.length; i++) {
     plusButtons[i].addEventListener('click', function() {
+        event.preventDefault();
         incrementQuantity(this);
     });
 }

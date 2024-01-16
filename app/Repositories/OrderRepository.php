@@ -16,12 +16,20 @@ class OrderRepository {
         if(Auth::check()){
             $user = Auth::user();
             $total_amount = 0;
+            $quantity = $request->input('quantity');
+            foreach($quantity as $quant=>$num){
 
+            }
             foreach($cart as $item){
-                $total_amount+=$item->price;
+                $total_amount+=$item->price * $num;
             }
 
+
+
+
         }
+
+
 
          return $this->orderModel->create([
             'user_id'=>$user->id,
@@ -30,7 +38,9 @@ class OrderRepository {
             'address'=>$request->input('address'),
             'phone'=>$request->input('phone'),
             'city'=>$request->input('city'),
-            'postcode'=>$request->input('postcode')
+            'postcode'=>$request->input('postcode'),
+            'quantity'=>$num
+
         ]);
     }
 }

@@ -1,4 +1,6 @@
-
+body {
+    background-color: #F9F5F6;
+}
 /*** Spinner Start ***/
 #spinner {
     opacity: 0;
