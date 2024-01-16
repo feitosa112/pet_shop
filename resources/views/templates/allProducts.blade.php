@@ -36,9 +36,11 @@
 
                                 @foreach ($allProducts as $product)
                                 {{-- @dd($product->categories) --}}
-
                                 <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <a href="{{route('productDetails',['name'=>$product->name,'id'=>$product->id])}}">
+                                    <?php $productName = str_replace(' ','-',$product->name) ?>
+
+
+                                    <a href="{{route('productDetails',['name'=>$productName,'id'=>$product->id])}}">
                                         <div class="rounded position-relative fruite-item" style="border: 1px solid orange">
                                             <div class="fruite-img">
                                                 <img src="img/{{$product->img1}}" alt="" style="width: 100%;height:100%">

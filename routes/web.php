@@ -31,7 +31,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::controller(ProductControler::class)->group(function(){
-    Route::get('/product-details/{name}/{id}','productDetails')->name('productDetails');
+    Route::get('/product-details/{name}/{id}','productDetails')->where('name', '^[^%]+$')->name('productDetails');
     Route::get('/add-to-cart/{id}','addToCart')->middleware('auth.check')->name('addToCart');
     Route::get('/cart-view','cartView')->middleware('auth.check')->name('cartView');
     Route::get('/delete/{id}','deleteFromCart')->name('deleteFromCart');
